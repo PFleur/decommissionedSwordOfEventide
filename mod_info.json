@@ -1,0 +1,14 @@
+{
+  "id":"pfsoe",
+  "name":"Decommissioned Sword of Eventide",
+  "author":"Patchouli Fleur",
+  "version":{
+    "major":1, 
+    "minor":0,
+    "patch":0
+  },
+  "description":"Allows you to complete Sword of Eventide/Princess of Persia without a Hegemony comission.",
+  "gameVersion":"0.97a-RC11",
+  "totalConversion":false,
+  "dependencies": []
+}
