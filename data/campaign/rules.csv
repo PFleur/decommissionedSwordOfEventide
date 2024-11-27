@@ -1,0 +1,624 @@
+id,trigger,conditions,script,text,options,notes
+"#RULESET_NAME hegemonylessSoE",,,,,,
+,,,,,,
+# Missions,,,,,,
+,,,,,,
+# No Hegemony Sword of Eventide,,,,,,
+,,,,,,
+# step1: meet Caspian Sang at a bar on somewhere,,,,,,
+pfsoeMeetCaspianStart0,DialogOptionSelected,"!$global.didEventideRaoBall
+$faction.id == hegemony
+$option == marketVisitBar
+$player.metDaud
+RepGTE hegemony FRIENDLY
+RollProbability 0.2","FireBest BarShuttleDownPrintDesc
+FireBest BarPrintDesc
+BarCMD playAmbience",,"pfsoe_meetCaspianStart:Continue",
+pfsoeMeetCaspianStart1,DialogOptionSelected,"$option == pfsoe_meetCaspianStart","SaveCurrentVisual
+BeginConversation caspian
+$player.metCaspianSang = true","A pack of young officers relax, downing a higher tier of drinks amid rolls of laughter at one or another bon mot.
+
+One of them glances at you, his head turning just a degree as recognition crosses his face. He calls out, lifting a drink.
+
+""Ah, you there! $playerName, is it not?""
+
+He puts on an glowing smile, hardly bothering to mask the underlying sneer, and approaches. His friends examine you, elbowing one another as if this is the set-up to some jape.","pfsoe_meetCaspian1greet2:""The one and only.""
+pfsoe_meetCaspian1greet1:""Do you know me?""
+pfsoe_meetCaspian1greet3:""Do I know you?""",
+pfsoeMeetCaspian1greet1,DialogOptionSelected,"$option == pfsoe_meetCaspian1greet1","$option = pfsoe_meetCaspian1 0
+FireBest DialogOptionSelected","""Of course, captain. You're all the talk amongst the officer corps,"" his arm makes a languid motion that doesn't quite encompass his drinking-cadre, who find this hilarious.",,
+pfsoeMeetCaspian1greet2,DialogOptionSelected,"$option == pfsoe_meetCaspian1greet2","$option = pfsoe_meetCaspian1 0
+FireBest DialogOptionSelected","He bows, theatrically, in faux respect. ""A pleasure to make your aquaintance, dear captain. You're all the talk amongst the officer corps,"" while rising his arm makes a languid motion that doesn't quite encompass his drinking-cadre, who find this hilarious.",,
+pfsoeMeetCaspian1greet3,DialogOptionSelected,"$option == pfsoe_meetCaspian1greet3","$option = pfsoe_meetCaspian1 0
+FireBest DialogOptionSelected","""Not yet, dear captain. See, you're all the talk amongst the officer corps,"" his arm makes a languid motion that doesn't quite encompass his drinking-cadre, who find this hilarious.",,
+pfsoeMeetCaspian1,DialogOptionSelected,"$option == pfsoe_meetCaspian1",,"""One hears you've won not a few... encounters with pirate scum and the like. And in service to the Hegemony, hear, hear!"" He raises his glass in a partial salute.
+
+Then he looks to each side, performatively checking for snoops, before leaning in to speak more quietly, ""One even hears that old man Daud himself invited you for a personal meeting. Didn't get any of that mozzie hive-dirt on you did he? Ha-ha.""","pfsoe_meetCaspianPrivate:""I have no comment on such speculation.""
+pfsoe_meetCaspianDontKnow:""I don't know what you're talking about.""
+pfsoe_meetCaspianWhat:""What do you mean by that?""
+pfsoe_meetCaspianInsulting:""Are you insulting the Hegemon?""",
+pfsoeMeetCaspian1a,DialogOptionSelected,"$option == pfsoe_meetCaspianPrivate","$option = pfsoe_meetCaspian2
+FireBest DialogOptionSelected",,,
+pfsoeMeetCaspian1b,DialogOptionSelected,"$option == pfsoe_meetCaspianDontKnow","$option = pfsoe_meetCaspian2
+FireBest DialogOptionSelected",,,
+pfsoeMeetCaspian1c,DialogOptionSelected,"$option == pfsoe_meetCaspianWhat","$option = pfsoe_meetCaspian2
+FireBest DialogOptionSelected",,,
+pfsoeMeetCaspian1d,DialogOptionSelected,"$option == pfsoe_meetCaspianInsulting","$option = pfsoe_meetCaspian2
+FireBest DialogOptionSelected",,,
+pfsoeMeetCaspian2,DialogOptionSelected,"$option == pfsoe_meetCaspian2",,"""Come now,"" he says with a wounded look. ""It's a grand old tradition amongst us,"" he pauses just enough to make the jab clear, "" to grumble about the top brass. I'm simply having a bit of a laugh with a new friend of mine. And-"" he speaks louder now, ""And a new friend of the Hegemony, from bottom to top!""
+
+His entourage cheers to this.","pfsoe_meetCaspian3:Continue",
+pfsoeMeetCaspian3,DialogOptionSelected,"$option == pfsoe_meetCaspian3",,"""We are all but comrades-in-arms, you and I. But where are my manners? Caspian Sang, reporting for duty."" He half-salutes with his drink again, the liquid coming dangerously close to spilling on you with the return. You catch one of Sang's drinking companions snickering, though it is unclear who the target is.
+
+""Although..."" He puts a finger on his chin, pantomiming deep thought, ""...perhaps I should count you as, at best, an auxiliary comrade. Do your bounties pay splendidly well? No need to answer of course, friend. It is the business,"" this word he emphasizes, ""of none but yourself.""
+
+""And old man Daud, of course,"" he adds with a wink.","pfsoe_meetCaspianPleasure:""The pleasure is mine, I'm sure.""
+pfsoe_meetCaspianPay:""The pay is irrelevant. I stand for the Hegemony.""
+pfsoe_meetCaspianBattles:""I win battles for you lot. The pay is so you feel like you're helping.""
+pfsoe_meetCaspianBetter:""Daud deserves better than you.""
+",
+pfsoeMeetCaspianPleasure,DialogOptionSelected,"$option == pfsoe_meetCaspianPleasure",,"""Hardly, my good captain!"" He nods reassuringly to his drinking-partners, putting on a show for them. ""Surely it is mine.""","pfsoe_meetCaspian4:Continue",
+pfsoeMeetCaspianPay,DialogOptionSelected,"$option == pfsoe_meetCaspianPay",,"Sang stands up straight, as if at attention. ""Then the recruiter is down the hall, you might even make an officer!"" the latter is packed with the theatrics of a holo-vid from the navy itself, earning a mix of cheers and laughter from his drinking companions.","pfsoe_meetCaspian4:Continue",
+pfsoeMeetCaspianBattles,DialogOptionSelected,"$option == pfsoe_meetCaspianBattles",,"Sang's face is overcome with shock and delight; he's found one that fights back. He clutches his chest as if stabbed, his drinking companions hooting and calling at your riposte.
+
+""Where did you come from, captain?"" he says, flicking spilled drink from his off-hand, ""Ludd curse me but the Hegemony can use such talent.""","pfsoe_meetCaspian4:Continue",
+pfsoeMeetCaspianBetter,DialogOptionSelected,"$option == pfsoe_meetCaspianBetter",,"""And in you, it seems he found it."" Sang speaks lightly, his drinking-partners hooting and calling behind him, but you sense a blade's edge in his words.","pfsoe_meetCaspian4:Continue",
+pfsoeMeetCaspian4,DialogOptionSelected,"$option == pfsoe_meetCaspian4",,"""I tell you what, I have just the notion."" He decisively quaffs his drink, then proceeds.
+
+""A most spectacular notion. In light of Daud's declaration that you're as much an officer as us, it would only be proper to provide you an opportunity to share an anecdote or two of your wisdom with the cream of the navy, don't you think?""
+
+""House Rao - surely you know the family - is holding the grand ball of this season on Eventide. I shall place your name upon the guest list by invitation of the humble House Sang. Now does that not sound absolutely first-rate? You'll be the talk of the season, I'm sure of it.""","pfsoe_meetCaspianAccept:""I wouldn't miss it for the world.""
+pfsoe_meetCaspianMaybe:""I'll think about it.""
+pfsoe_meetCaspianDecline:""I must decline your generous invitation.""
+",
+pfsoeMeetCaspian4accept,DialogOptionSelected,"$option == pfsoe_meetCaspianAccept","$option = pfsoe_meetCaspian5
+FireBest DialogOptionSelected","""Most excellent, mercenary-captain,"" Sang says with a smirk.",,
+pfsoeMeetCaspian4maybe,DialogOptionSelected,"$option == pfsoe_meetCaspianMaybe","$option = pfsoe_meetCaspian5
+FireBest DialogOptionSelected","""Don't think too long, dear mercenary,"" Sang says with a smirk. ""It's decisive action that keeps your kind alive.""",,
+pfsoeMeetCaspian4decline,DialogOptionSelected,"$option == pfsoe_meetCaspianDecline","$option = pfsoe_meetCaspian5
+FireBest DialogOptionSelected","""The offer stands until you miss all the fun, mercenary-captain,"" Sang says with a smirk.",,
+pfsoeMeetCaspian5,DialogOptionSelected,"$option == pfsoe_meetCaspian5",,"""Come to Eventide. And bring that razor wit, for you'll need it.""
+
+With an affected bow, Sang returns to his table. The other young officers whisper and continue to cast wayward looks in your direction.","pfsoe_meetCaspian6:Continue",
+pfsoeMeetCaspian6,DialogOptionSelected,"$option == pfsoe_meetCaspian6","EndConversation DO_NOT_FIRE
+RestoreSavedVisual
+BeginMission pfsoe","Despite Sang's barely masked venom, you consider that this might be a good opportunity to meet some people of real influence in the Hegemony.","pfsoe_meetCaspianEnd:Return to the bar",
+pfsoeMeetCaspianLeave,DialogOptionSelected,"$option == pfsoe_meetCaspianEnd","BarCMD showOptions",,,
+"#END step1: meet Caspian Sang at a bar on Chicomoztoc",,,,,,
+,,,,,,
+# pfsoe step 2: Arrive at Eventide,,,,,,"# Assume the player always shows up 'just in time'"
+pfsoeArriveEventide,MarketPostDock,"$market.pfsoe_invitedToBall
+!$market.pfsoe_sawInvite","$market.soe_sawInvite = true","Your comms officer notifies you of an incoming message for you, personally. You confirm your identity and access the file. The crest of House Rao of Eventide fills your display, evoking martial tradition, long-held wealth, and prestige.
+
+""You are cordially invited to the grand seasonal ball at the spring estate of House Rao...""","pfsoe_arriveAttendNow:Immediately take a shuttle to the Rao estate
+pfsoe_arriveAttendLater:Take care of other business first
+pfsoe_deleteInvite:Delete the invitation.",
+pfsoeArriveToBusiness,DialogOptionSelected,"$option == pfsoe_arriveAttendLater","FireBest MarketPostDock",,,
+pfsoeArriveBallAgain,PopulateOptions,"$market.pfsoe_invitedToBall
+$market.pfsoe_sawInvite
+$menuState == main",,"You have been invited to the grand seasonal ball to be held at the estate of House Rao. ","3:pfsoe_arriveAttendNow:Take a shuttle to the Rao estate
+4:pfsoe_arriveAttendNever:Delete the invitation.",
+pfsoeDeleteInviteNever,DialogOptionSelected,"$option == pfsoe_arriveAttendNever","$option = pfsoe_deleteInvite 0
+FireBest DialogOptionSelected",,,
+pfsoeDeleteInvite,DialogOptionSelected,"$option == pfsoe_deleteInvite","$global.pfsoe_completed = true
+$global.soe_completed = true
+Call $global.pfsoe_ref updateStage
+ShowDefaultVisual
+FireBest MarketPostOpen","With a quick tap you delete the invitation forever.
+
+You, attending a ball with a bunch of fancy aristocrats? With that insufferable Caspian Sang? No good could come of it.",,
+pfsoeArriveToBall,DialogOptionSelected,"$option == pfsoe_arriveAttendNow",,"As you don your best apparel as a shuttle is prepared, and you consider your primary goal, which is to...","pfsoe_toBallConnections:Make useful connections in the Hegemony officer corps
+pfsoe_toBallGoodTime:It's a party! Just have a good time
+pfsoe_toBallDisgraceSang:Find a way to disgrace Caspian Sang
+pfsoe_toBallOpenMind:Keep an open mind and watch for opportunities
+",
+pfsoeToBallConnections,DialogOptionSelected,"$option == pfsoe_toBallConnections","$player.pfsoe_goalConnections = true 0
+$option = pfsoe_houseRao1 0
+FireBest DialogOptionSelected",,,
+pfsoeToBallGoodTime,DialogOptionSelected,"$option == pfsoe_toBallGoodTime","$player.pfsoe_goalGoodTime = true 0
+$option = pfsoe_houseRao1 0
+FireBest DialogOptionSelected",,,
+pfsoeToBallDisgraceSang,DialogOptionSelected,"$option == pfsoe_toBallDisgraceSang","$player.pfsoe_goalDisgraceSang = true 0
+$option = pfsoe_houseRao1 0
+FireBest DialogOptionSelected",,,
+pfsoeToBallOpenMind,DialogOptionSelected,"$option == pfsoe_toBallOpenMind","$player.pfsoe_goalOpenMind = true 0
+$option = pfsoe_houseRao1 0
+FireBest DialogOptionSelected",,,
+pfsoeHouseRao1,DialogOptionSelected,"$option == pfsoe_houseRao1","ShowImageVisual eventide","Your shuttle follows a course to the surface authorized by the datakey attached to your invitation to the grand spring ball of Eventide.
+
+You watch as the sprawling spires and annexes of House Rao's spring manor rise on the horizon from a fertile, protected valley. The battlements of vast storm clouds stream beyond distant ridgelines by some quirk of geography which channels airflow around this eye of calm.","pfsoe_houseRao2:Continue",
+pfsoeHouseRao2,DialogOptionSelected,"$option == pfsoe_houseRao2",,"Your shuttle descends through shafts of light reflected from orbital mirrors. You observe that on this occasion the Raos have arranged for artful placement of the mirrors to provide dramatic mirrorsets in several vistas viewable from the manor.
+
+Upon landing you are intercepted and greeted by a human servitor in a crimson and silver house uniform. Your pilots and bodyguards, meanwhile, are directed toward a utilitarian waiting area stocked with ample refreshments.","pfsoe_houseRao3:Continue",
+pfsoeHouseRao3,DialogOptionSelected,"$option == pfsoe_houseRao3",,"You are led to a bulbous lift with no visible control interface. As soon as the doors close, it begins a smooth ascent toward the spires of the manor while the servitor makes soothing inquiries about your trip. 
+
+There is no perceptible change in subjective gravity as the lift accelerates upward; the agrav plates here are very finely tuned indeed.","pfsoe_houseRao4:Continue",
+pfsoeHouseRao4,DialogOptionSelected,"$option == pfsoe_houseRao4",,"The servitor whisks you past soaring windows blazing with the light of mirrorset to a grand set of doors. They signal for you to wait for just a moment, following some opaque choreography of the event. Within a minute, it is your time. 
+
+The grand doors swing open with the silent gravity of the celestial spheres, sweeping you into the ballroom of House Rao.","pfsoe_houseRao5:Enter the ballroom",
+pfsoeHouseRao5,DialogOptionSelected,"$option == pfsoe_houseRao5","Call $global.pfsoe_ref addMusicPlayer","""$playerName,"" your name rings through the great hall. A brief pause, then ""Loyal friend of the Hegemony Navy.""
+
+A few heads turn to take you in. There, a dismissive brow raise, there a too-quick flick of the eyes. The attendees seem little bothered to match your name to a face.
+
+Resplendent brass of the Hegemony Navy dominate the crowd, though there are a smattering from the Legion as well as the various ministries spun off from the naval hierarchy. ","pfsoe_houseRao6:Continue",
+pfsoeHouseRao6,DialogOptionSelected,"$option == pfsoe_houseRao6","FireAll pfsoeBallEntranceGoal","Less overt but as numerous are civilians in suit, dress, and robe that generally but not as a rule evoke the martial character of Hegemony rule. Despite the political climate, you even recognize the characteristic dress of several other major factions, religions, and independent megacorporations; diplomats, business execs, holo-actors, priests, and even a cluster bearing the garb of tenured Galatia Academy academicians.
+
+Now you can get to doing what you came here for.",,
+pfsoeHouseRaoGoalSchmooze,pfsoeBallEntranceGoal,"$player.pfsoe_goalConnections",,,"soa_houseRaoSchmooze:Introduce yourself to someone important",
+pfsoeHouseRaoGoalParty,pfsoeBallEntranceGoal,"$player.pfsoe_goalGoodTime",,,"soa_houseRaoParty:Get the party started! Step 1- find a drink",
+pfsoeHouseRaoGoalRevenge,pfsoeBallEntranceGoal,"$player.pfsoe_goalDisgraceSang",,,"soa_houseRaoRevenge:Scan the crowd for the insufferable Caspian Sang",
+pfsoeHouseRaoGoalUnsure,pfsoeBallEntranceGoal,"$player.pfsoe_goalOpenMind",,,"pfsoe_houseRaoUnsure:Get a feel for the room before taking any action",
+pfsoeHouseRaoSchmooze1,DialogOptionSelected,"$option == soa_houseRaoSchmooze",,"Your eyes roam over the crowd, looking for the push and pull of influence. You note the figures of vast power moving through the space, attracting satellites and disturbing orbits. There, a space marshall of the reserve fleet; there, the prime executor of Eventide's planetary government. There, the chief operations officer of a major military contractor.
+
+""$PlayerSirOrMadam."" A human servitor interrupts your train of thought, offering a tray filled with delicate glasses of something effervescent.","pfsoe_takeDrink:Take a glass
+pfsoe_noDrink:Wave them away",
+pfsoeHouseRaoParty1,DialogOptionSelected,"$option == soa_houseRaoParty",,"You merely begin to look the slightest bit thirsty when a human servitor appears as if from an unlikely hyperspace jump.
+
+""$PlayerSirOrMadam."" They offer a tray filled with delicate glasses of something effervescent.","pfsoe_takeDrink:Take a glass
+pfsoe_noDrink:Wave them away",
+pfsoeHouseRaoRevenge1,DialogOptionSelected,"$option == soa_houseRaoRevenge","$player.sawCaspian = true 0","Your eyes roam over the crowd, focusing on the younger groups of cadets when you hear from behind you that unmistakably insipid laugh. Like a combat targeting lock, your attention spins toward the source.
+
+He's just left his pack of social remorae and is already on an approach vector. Noticing you notice him, he instantly deploys a grin of dubious conviviality.
+
+""$PlayerSirOrMadam."" An oblivious human servitor appears beside you offering a tray filled with delicate glasses of something effervescent.","pfsoe_takeDrink:Take a glass
+pfsoe_noDrink:Wave them away",
+pfsoeHouseRaoUnsure1,DialogOptionSelected,"$option == pfsoe_houseRaoUnsure",,"Your eyes roam over the crowd, observing the push and pull of influence. Figures of vast power and influence move through the space, attracting satellites and disturbing orbits. There, a space marshall of the Hegemony navy; there, the prime executor of Eventide's planetary government.
+
+""$PlayerSirOrMadam."" A human servitor appears beside you, offering a tray filled with delicate glasses of something effervescent.","pfsoe_takeDrink:Take a glass
+pfsoe_noDrink:Wave them away",
+pfsoeSangAppearsDrink,DialogOptionSelected,"$option == pfsoe_takeDrink
+!$player.sawCaspian","$player.sawCaspian = true 0
+$option = pfsoe_takeDrink 0
+FireBest DialogOptionSelected","You hear a familiar and not entirely welcome voice pierce the murmur of conversation and soft music.",,
+pfsoeSangAppearsNoDrink,DialogOptionSelected,"$option == pfsoe_noDrink
+!$player.sawCaspian","$player.sawCaspian = true 0
+$option = pfsoe_noDrink 0
+FireBest DialogOptionSelected","You hear a familiar and not entirely welcome voice pierce through the murmur of conversation and soft music.",,
+pfsoeTakeDrink,DialogOptionSelected,"$option == pfsoe_takeDrink
+$player.sawCaspian","BeginConversation caspian
+$player.tookDrink = true 0
+FireAll pfsoesangRound1","""Why captain,"" Caspian Sang oozes up to you. His uniform is as newly pressed and his smile as insincere as at your last meeting. ""I see you've already finished your hunt,"" he indicates your untouched beverage, ""The bounty of our fine hosts' noblesse oblige so soon sullied by your hand, eh.""
+
+You smell the spirits on his breath as he continues to speak. ""But I give you too little credit. You serve the Hegemony, do you not? Give a little show of it now and pass me the top-up, will you?""
+
+Over Caspian's shoulder you see his gang of minions tittering.",,
+pfsoeNoDrink,DialogOptionSelected,"$option == pfsoe_noDrink
+$player.sawCaspian","BeginConversation caspian
+FireAll pfsoesangRound1","""Why captain,"" Caspian Sang oozes up to you, nearly emptied glass in hand. ""I would expect a commissioned pirate - my apologies, privateer - to start by plundering our fine hosts' noblesse oblige."" 
+
+He offers his drink to you, ""Please, take mine."" You can smell the spirits on his breath. ""Do your duty to the Hegemony and fetch me a top-up.""
+
+Over Caspian's shoulder you see his gang of minions tittering.",,
+pfsoeSangRound1reply1,pfsoesangRound1,,,,"pfsoe_sangRound2YesYouHave:""I didn't come here to spar with you, Sang.""",
+pfsoeSangRound1reply2,pfsoesangRound1,"$player.pfsoe_goalConnections",,,"pfsoe_sangRound2someoneElse:""Pardon me, I was about the speak with someone else.""",
+pfsoeSangRound1reply3,pfsoesangRound1,"$player.pfsoe_goalGoodTime",,,"pfsoe_sangRound2enjoyDrink:""Cool your flux ace, I'm just trying to enjoy a drink.""",
+pfsoeSangRound1reply4,pfsoesangRound1,"$player.pfsoe_goalDisgraceSang",,,"pfsoe_sangRound2auxiliaries:""Do you always call on civilians to get anything done, lieutenant?""",
+pfsoeSangRound1reply5,pfsoesangRound1,"$player.pfsoe_goalOpenMind",,,"pfsoe_sangRound2YesYouHave2:""Sang, have I offended you somehow?""",
+pfsoeSangRound1reply6,pfsoesangRound1,"$player.tookDrink",,,"pfsoe_sangRound2throwDrink:Throw the drink in his face",
+pfsoeSangRound1reply7,pfsoesangRound1,"$player.pfsoe_goalDisgraceSang",,,"pfsoe_sangRound2punchFace:Punch his stupid face",
+pfsoeSangRound2yesYouHave,DialogOptionSelected,"$option == pfsoe_sangRound2YesYouHave","AdjustRepPerson caspian VENGEFUL -20","""Yes, captain, you have."" The cruel spark in Caspian's eye grows. ""By showing up. It was a test, you see, and you failed. You don't know your place. Not yet.""
+
+He licks his lips. This is just the opening salvo.","pfsoe_introNeriene1:Continue",
+pfsoeSangRound2yesYouHave2,DialogOptionSelected,"$option == pfsoe_sangRound2YesYouHave2","$option = pfsoe_sangRound2YesYouHave 0
+FireBest DialogOptionSelected",,,
+pfsoeSangRound2someoneElse,DialogOptionSelected,"$option == pfsoe_sangRound2someoneElse","AdjustRepPerson caspian VENGEFUL -20","""No, private-captain, you weren't."" The cruel spark in Caspian's eye grows. ""You don't truly belong here, you see. I was testing you, and you failed because you don't know your place. Not yet.""
+
+He licks his lips. This is just the opening salvo.","pfsoe_introNeriene1:Continue",
+pfsoeSangRound2enjoyDrink,DialogOptionSelected,"$option == pfsoe_sangRound2enjoyDrink","AdjustRepPerson caspian VENGEFUL -20","""No, private-captain, you weren't."" The cruel spark in Caspian's eye grows. ""Try as you might, you'll never be one of us. You don't belong here. I was testing you, and you failed because you don't know your place. Not yet.""
+
+He licks his lips. This is just the opening salvo.","pfsoe_introNeriene1:Continue",
+pfsoeSangRound2auxiliaries,DialogOptionSelected,"$option == pfsoe_sangRound2auxiliaries","AdjustRepPerson caspian VENGEFUL -20","A mirthless smile grows on his face, and he turns to nod in acknowledgement to his minions, who cheer the exchange.
+
+""You finally admit you're not one of us."" The cruel spark in Caspian's eye grows. ""And try as you might, you'll never be one of us. You don't belong here, you see. I was testing you, and you failed by showing your face.""
+
+He licks his lips. This is just the opening salvo.","pfsoe_introNeriene1:Continue",
+pfsoeSangRound2throwDrink,DialogOptionSelected,"$option == pfsoe_sangRound2throwDrink","AdjustRepPerson caspian VENGEFUL -30
+AdjustRep hegemony SUSPICIOUS -5
+$player.threwDrink = true 0","Caspian is caught completely off guard. He sputters, wiping his face.
+
+A small circle of the crowd around you has gone silent. Now they're looking at you.
+
+""That was a big mistake, $playerName,"" he says, his voice gone cold.","pfsoe_introNeriene1:Continue",
+pfsoeSangRound2punchFace,DialogOptionSelected,"$option == pfsoe_sangRound2punchFace","AdjustRepPerson caspian VENGEFUL -60
+AdjustRep hegemony SUSPICIOUS -15
+$player.threwPunch = true 0","Caspian is caught completely off guard as you land a solid blow. He trips on his uniform's scabbard and topples to the ground.
+
+A widening circle of the crowd has gone silent; now they are all looking at you.
+
+He looks up at you looking like a cornered animal, giddy in fear and delight. ""You just made such a mistake, $playerName,"" he says quietly, wiping blood from his nose.","pfsoe_introNeriene1:Continue",
+pfsoeIntroNeriene1drink,DialogOptionSelected,"$option == pfsoe_introNeriene1
+$player.threwDrink","ShowSecondPerson neriene_rao","A woman in the uniform of a Hegemony commander appears, already looking at Sang with suspicion.
+ 
+""Lieutenant Sang, was it?"" Without shifting her focus she tosses a cocktail napkin at him. ""I see you've been welcoming a new arrival to my family's celebration.""
+
+As Sang fails to catch the napkin you can almost see his bully's instincts grappling with the new social dynamic in play.
+
+She nods politely to you. ""Commander Neriene Rao. And if I recall correctly, you are Captain $playerName?""","pfsoe_introNeriene2a:""I am. It's a pleasure to meet you.""
+pfsoe_introNeriene2b:""I am.""
+pfsoe_introNeriene2:""I am. Caspian was just leaving.""",
+pfsoeIntroNeriene1punch,DialogOptionSelected,"$option == pfsoe_introNeriene1
+$player.threwPunch","ShowSecondPerson neriene_rao
+$player.metNeriene = true","A woman in the uniform of a Hegemony commander appears, taking the center of attention, and speaks with a voice lifted to the crowd of onlookers.
+
+""Lieutenant Sang, was it? I see you've been welcoming a new arrival to my family's celebration with your usual charm.""
+
+A polite wave of laughter from the onlookers breaks the tension. They start to turn back to their conversations. You can see Caspian's face turning red as his bully's instincts grapple with the new social dynamic.
+
+She nods politely to you. ""Commander Neriene Rao. If I recall correctly, you are... captain $playerName?""","pfsoe_introNeriene2a:""I am. It's a pleasure to meet you.""
+pfsoe_introNeriene2b:""I am.""
+pfsoe_introNeriene2:""I am. Caspian was just leaving.""",
+pfsoeIntroNeriene1,DialogOptionSelected,"$option == pfsoe_introNeriene1","ShowSecondPerson neriene_rao
+$player.metNeriene = true","A woman in the uniform of a Hegemony commander appears, already looking at Sang with suspicion.
+ 
+""Lieutenant Sang, was it?"" she says, projecting her voice. ""I see you've been welcoming a new arrival to my family's celebration.""
+
+You can almost see his bully's instincts grappling with the new social dynamic in play.
+
+She nods politely to you. ""Commander Neriene Rao. If I recall correctly, you are... captain $playerName?""","pfsoe_introNeriene2a:""I am. It's a pleasure to meet you.""
+pfsoe_introNeriene2b:""I am.""
+pfsoe_introNeriene2:""I am. Caspian was just leaving.""",
+pfsoeIntroNeriene2a,DialogOptionSelected,"$option == pfsoe_introNeriene2a","$option = pfsoe_introNeriene2 0
+FireBest DialogOptionSelected",,,
+pfsoeIntroNeriene2b,DialogOptionSelected,"$option == pfsoe_introNeriene2b","$option = pfsoe_introNeriene2 0
+FireBest DialogOptionSelected",,,
+pfsoeIntroNeriene2,DialogOptionSelected,"$option == pfsoe_introNeriene2
+!$threwPunch","EndConversation DO_NOT_FIRE
+BeginConversation neriene_rao","Neriene faces you, cutting Caspian out of the conversation.
+
+You watch in your peripheral vision as he realizes what's been done. He scuttles back toward his minions. The joking is over. They look at you now with sneering hostility.","pfsoe_introNeriene3:Continue","#HideSecondPerson ?"
+pfsoeIntroNeriene3,DialogOptionSelected,"$option == pfsoe_introNeriene3","AdjustRepPerson neriene_rao FRIENDLY 1","""That boy,"" she says, ""is a weak-willed fool who believes that he must tear down others to build up himself."" 
+
+She looks you over, ""And it would seem that he chose a poor target this time around. And even had he not, I expect someone would have to shoot down his little game before he made much more of a scene.""
+
+She sighs, ""There's the family name to think of, after all.""","pfsoe_askEstate:""House Rao. As in, the owners of this estate.""
+pfsoe_askOrcus:""House Rao. As in, Admiral Orcus Rao, the Hero of Raesvelg.""
+pfsoe_notExcited:""You don't seem too excited about this ball.""",
+pfsoeIntroNeriene3drink,DialogOptionSelected,"$option == pfsoe_introNeriene3
+$player.threwDrink","AdjustRepPerson neriene_rao FRIENDLY 2","""Caspian Sang is a fool and he deserved that,"" she says with a hint of smile. ""There are times I wish I'd done the same. But,"" Neriene looks around, ""There's the family name to think of.""","pfsoe_askEstate:""House Rao. As in, the owners of this estate.""
+pfsoe_askOrcus:""House Rao. As in, Admiral Orcus Rao, the Hero of Raesvelg.""
+pfsoe_notExcited:""You don't seem too excited about this ball.""",
+pfsoeIntroNeriene3punch,DialogOptionSelected,"$option == pfsoe_introNeriene3
+$player.threwPunch",,"""Caspian Sang is a fool and he deserved that,"" she says with a frown, ""But striking an officer won't endear you to the others. It's also technically illegal, but if you follow my lead nothing should come of it. Sang is not the sort to endure well the shame of filing such a report.""
+
+""Besides,"" she says, looking around, ""It might offend the family.""","pfsoe_askWhyCover:""Why are you covering for me?""
+pfsoe_askEstate:""House Rao. As in, the owners of this estate.""
+pfsoe_askOrcus:""House Rao. As in, Admiral Orcus Rao, the Hero of Raesvelg.""
+pfsoe_notExcited:""You don't seem too excited about this ball.""",
+pfsoeNerieneAskWhyCover,DialogOptionSelected,"$option == pfsoe_askWhyCover",,"She catches your eyes for a moment, then looks back toward the crowd. ""Because... I thought it might be interesting.""
+
+""Anyway, the family has a reputation for a rebellious streak and I'd be remiss not to uphold it.""","pfsoe_askEstate:""House Rao. As in, the owners of this estate.""
+pfsoe_askOrcus:""House Rao. As in, Admiral Orcus Rao, the Hero of Raesvelg.""
+pfsoe_notExcited:""You don't seem too excited about this ball.""",
+pfsoeNerieneAskEstate,DialogOptionSelected,"$option == pfsoe_askEstate",,"""Yes. Yes, we are. Absurd, isn't it?"" She looks a little sheepish, ""I mean, it's home. But this, this palace? In the face of everything going on out there?""
+
+She looks up, past the mirrorset illuminating the grand windows of the ballroom. ""We're supposed to be rebuilding the Domain, aren't we?""
+
+""Maybe we are,"" she adds darkly.","pfsoe_danceStarting1a:""What do you mean by that?""
+pfsoe_danceStarting1b:""Does Admiral Orcus Rao agree with you?""",
+pfsoeNerieneAskOrcus,DialogOptionSelected,"$option == pfsoe_askOrcus",,"""Oh yes, Granduncle Orcus."" She smiles, revisiting some old memory.
+
+""No one can believe he got away with everything he's gotten away with. But if, like him, you've got the dumb luck to walk out of disaster alive again and again - and better yet, you deliver victory in the darkest days of war - they'll let you get away with anything.""
+
+She considers a moment, then adds, ""Almost anything. It's gone to his head a bit though, I think.""","pfsoe_danceStarting1a:""What do you mean by that?""
+pfsoe_danceStarting1b:""Is your, uh, Granduncle Orcus here?""",
+pfsoeNerieneNotExcited,DialogOptionSelected,"$option == pfsoe_notExcited",,"""Look at them,"" she says. ""All these fancy people puffing each other up, all smiles and high ideals in public. Once they're behind closed doors, it'll be plotting and backstabbing and spreading rumors.""
+
+""I could never stand how two-faced it all is. Grandmother says to take it personally is childish, that it's just how politics is done."" She twitches as if to cast off a bit of dirt.","pfsoe_danceStarting1a:""Then why are you here?""
+pfsoe_danceStarting1b:""Does the Admiral Orcus Rao agree with you?""",
+pfsoeDanceStarting1a,DialogOptionSelected,"$option == pfsoe_danceStarting1a","$option = pfsoe_danceStarting1b 0
+FireBest DialogOptionSelected",,,
+pfsoeDanceStarting1b,DialogOptionSelected,"$option == pfsoe_danceStarting1b",,"As Neriene begins to reply, you find the crowds in the ballroom withdrawing toward the walls of the room. During your exchange with Sang, you must have missed some announcement because you find the live band at the end of the great hall is beginning to play a waltz.
+
+Dancers partner up from the edge of the floor. You catch a glimpse of Sang and his flunkies keeping an eye on you, still held off by the force of Neriene's pressence.
+
+You look at her for some kind of cue. She looks at you expectantly.","pfsoe_danceStarting2a:""Shall we?""
+pfsoe_danceStarting2b:Say nothing
+pfsoe_noDancing:""I don't dance.""
+pfsoe_startDanceDrink:""Um. Where can a space captain get a fresh drink around here?""
+pfsoe_startDanceJump:Try very hard to initiate a Transverse Jump",
+pfsoeDanceStarting2a,DialogOptionSelected,"$option == pfsoe_danceStarting2a","$player.playerStartedDance = true 0","Neriene of House Rao nods and takes your hand. You find yourself pulled toward the center of the dance floor with the inevitability of a singularity's gravity well. ","pfsoe_danceRound1:Continue",
+pfsoeDanceStarting2b,DialogOptionSelected,"$option == pfsoe_danceStarting2b","$player.nerieneStartedDance = true 0","Neriene of House Rao takes your hand and pulls you toward the center of the dance floor with the inevitability of a singularity's gravity well. ","pfsoe_danceRound1:Continue",
+pfsoeDanceStarting2c,DialogOptionSelected,"$option == pfsoe_noDancing",,"Neriene of House Rao gives you a skeptical look. ""Are you at least willing to try?""","pfsoe_danceStarting2cYes:""Yes.""
+pfsoe_danceEscape1:""No. I'm going to leave now.""",
+pfsoeDanceStarting2cYes,DialogOptionSelected,"$option == pfsoe_danceStarting2cYes","$player.nerieneStartedDance = true 0","""Then I'll show you,"" she says, taking your hand. You find yourself pulled toward the center of the dance floor with the inevitability of a singularity's gravity well. ","pfsoe_danceRound1:Continue",
+pfsoeDanceStarting2d,DialogOptionSelected,"$option == pfsoe_startDanceDrink
+$player.tookDrink",,"Neriene of House Rao gives you a skeptical look. ""There's one in your hand. But you're going to have to put it down if we're going to dance.""
+
+She snaps her fingers and instantly a servitor appears with a tray to take your drink.","pfsoe_danceStarting2b:Put the drink down
+pfsoe_danceStarting2a:Chug the drink and leave the glass
+pfsoe_danceEscape1:""Um. I'm going to leave now.""",
+pfsoeDanceStarting2g,DialogOptionSelected,"$option == pfsoe_startDanceJump",,"She gives you a skeptical look. ""Are you feeling well, $playerSirOrMadam?""","pfsoe_danceStarting2f:""I was trying to initiate a Transverse Jump.""
+pfsoe_danceStarting2a:""Would you care to dance?""
+pfsoe_danceStarting2b:""What would you like to do?""
+pfsoe_danceEscape1:""Um. I'm going to leave now.""",
+pfsoeDanceStarting2e,DialogOptionSelected,"$option == pfsoe_startDanceDrink
+!$player.tookDrink",,"She gives you a skeptical look. ""Are you stalling, $playerSirOrMadam? This does not befit your reputation.""","pfsoe_danceStarting2f:""My reputation?""
+pfsoe_danceStarting2a:""Would you care to dance?""
+pfsoe_danceStarting2b:""What would you like to do?""
+pfsoe_danceEscape1:""Um. I'm going to leave now.""",
+pfsoeDanceStarting2f,DialogOptionSelected,"$option == pfsoe_danceStarting2f",,"Her skeptical look takes a turn toward withering.","pfsoe_danceStarting2a:""Would you care to dance?""
+pfsoe_danceStarting2b:""What would you like to do?""
+pfsoe_danceEscape1:""Um. I'm going to leave now.""",
+pfsoeDanceEscape1,DialogOptionSelected,"$option == pfsoe_danceEscape1","$player.leftNerieneOnDanceFloor = true
+EndConversation DO_NOT_FIRE
+AdjustRepPerson neriene_rao NEUTRAL -1","You turn and find your way toward the edge of the room, leaving a bemused Neriene of House Rao on the dance floor.","pfsoe_danceEscape2:Continue",
+pfsoeDanceEscape2,DialogOptionSelected,"$option == pfsoe_danceEscape2","MarketReduceRandomRep
+AdjustRep hegemony SUSPICIOUS -1","Jeers and laughter come from the direction of Sang's minions, but they're ignored easily enough as you turn your back on the ballroom.
+
+You have no doubt that you'll be the butt of their jokes all night.
+
+A quick inquiry with one of the uniformed staff allows you access to a discreet servants' access lift and back to your shuttle's pad with a minimum of fuss.","pfsoe_danceEscape3:Continue",
+pfsoeDanceEscape3,DialogOptionSelected,"$option == pfsoe_danceEscape3","BeginConversation neriene_rao","The staff is efficient; your entourage is summoned without requiring your intervention, though they seem to have been interrupted in the middle of a meal, wiping hands and one guard popping an anti-inebriant.
+
+Your shuttle is prepped and ready to leave.","pfsoe_danceEscapeEnd:Board and order return to orbit",
+pfsoeDanceEscapeEnd,DialogOptionSelected,"$option == pfsoe_danceEscapeEnd","EndConversation DO_NOT_FIRE
+$global.pfsoe_completed = true
+$global.soe_completed = true
+Call $global.pfsoe_ref updateStage
+ShowDefaultVisual
+FireBest MarketPostOpen","Your shuttle rejoins your $shipOrFleet above $entityName.",,
+pfsoeDanceRound1a,DialogOptionSelected,"$option == pfsoe_danceRound1
+$player.nerieneStartedDance","$option = pfsoe_danceRound2 0
+FireBest DialogOptionSelected","You are slow to follow at first, not being accustomed to ballroom dancing with the elite of Eventide, but Neriene is patient and accommodating, providing instructions on the local customs in a low voice. She is, you suspect, a commander able to embolden green crews toward good performance under pressure.",,
+pfsoeDanceRound1b,DialogOptionSelected,"$option == pfsoe_danceRound1
+$player.playerStartedDance","$option = pfsoe_danceRound2 0
+FireBest DialogOptionSelected","She is quick to follow, though you suspect not accustomed to that role. Nor is ballroom dancing with the Hegemony elite of Eventide much in your wheelhouse, but Neriene provides a few suggestions pursuant to the local customs in a low voice. She is, you suspect, a commander able to embolden green crews toward good performance under pressure.",,
+pfsoeDanceRound2,DialogOptionSelected,"$option == pfsoe_danceRound2",,"Before long, you find yourselves caught up in the rhythm of the movements and for a short moment you manage to forget about petty bullies and factional politics.","pfsoe_danceRound3:Continue",
+pfsoeDanceRound3,DialogOptionSelected,"$option == pfsoe_danceRound3",,"The next song begins, and inertia takes you.
+
+""So,"" says Neriene over your shoulder. ""You know who I am, why I'm here."" A step, a turn.
+
+""Why are you here, captain? I know it's not for Caspian Sang.""","pfsoe_danceReplyImportant:""I was hoping to talk with someone important.""
+pfsoe_danceReplyParty:""I just can't turn down an invitation to a good party.""
+pfsoe_danceReplySang:""It really was to prove Sang wrong, somehow.""
+pfsoe_danceReplyFelt:""Hard to say. It felt like I ought to be here.""
+pfsoe_danceReplyYou:""For you, of course.""",
+pfsoeDanceRound3important,DialogOptionSelected,"$option == pfsoe_danceReplyImportant","AdjustRepPerson neriene_rao FRIENDLY 1","""Then I must apologize for disappointing you,"" she says with a wry smile.","pfsoe_danceRound4:Continue",
+pfsoeDanceRound3party,DialogOptionSelected,"$option == pfsoe_danceReplyParty","AdjustRepPerson neriene_rao FRIENDLY 1","""Good,"" she says with a smile, ""Because I'm finally starting to enjoy myself.""","pfsoe_danceRound4:Continue",
+pfsoeDanceRound3sang,DialogOptionSelected,"$option == pfsoe_danceReplySang",,"She frowns, ""Though I agree with the sentiment, it's not him you need to worry about.""","pfsoe_danceRound4:Continue",
+pfsoeDanceRound3felt,DialogOptionSelected,"$option == pfsoe_danceReplyFelt","AdjustRepPerson neriene_rao FRIENDLY 1","""Then it's fate,"" she says with a wry smile, ""Somehow I didn't take you for a romantic.""","pfsoe_danceRound4:Continue",
+pfsoeDanceRound3you,DialogOptionSelected,"$option == pfsoe_danceReplyYou","AdjustRepPerson neriene_rao FRIENDLY 1","""A barefaced lie,"" she says with a smile, ""But it's a nice thought.""","pfsoe_danceRound4:Continue",
+pfsoeDanceRound4,DialogOptionSelected,"$option == pfsoe_danceRound4",,"You see Neriene's eyes focus on something behind you, and her expression go hard as she pulls away from you.","pfsoe_danceRound5:Continue",
+pfsoeDanceRound5,DialogOptionSelected,"$option == pfsoe_danceRound5","ShowSecondPerson caspian","""Oh $playerName!""
+
+You know that nasal tone all too well, now, and slowly turn to see Caspian Sang and his entourage behind a thick-necked lieutenant.","pfsoe_danceRound6:Continue",
+pfsoeDanceRound6,DialogOptionSelected,"$option == pfsoe_danceRound6","ShowThirdPerson magnus_cardona
+FireBest pfsoeDuelIntro
+$player.metCardona = true","The new lieutenant ignores Sang entirely. ""Neriene,"" he says. ""What's this then, slumming with pirate trash?""
+
+""Magnus Cardona,"" she whispers to you, ""A real piece of-""",,
+pfsoeDuelIntro1a,pfsoeDuelIntro,"!$player.threwPunch","AdjustRepPerson magnus_cardona VENGEFUL -40
+#AdjustRep hegemony SUSPICIOUS -1","Sang calls out, ""Let the auxiliary-captain speak!""
+
+Cardona shoots Sang a look that shuts him up, then turns his dead-eyed stare to you. ""I'm to understand that this frontier barbarian impugned the honor of a Hegemony officer tonight.""
+
+The dance has stopped, the band finally having got the hint. All eyes are on you.","pfsoe_duelIntroCaspian:""No, Caspian managed that all on his own.""
+pfsoe_introWhoMe:""Who, me?""
+pfsoe_introDrink:""Why don't we all have a drink and calm down.""",
+pfsoeDuelIntro1b,pfsoeDuelIntro,"$player.threwPunch","AdjustRepPerson magnus_cardona VENGEFUL -40
+#AdjustRep hegemony SUSPICIOUS -5","Cardona calls out, ""I'm to understand that this frontier barbarian assaulted the honor of a Hegemony officer tonight.""
+
+The dance has stopped, the band finally having got the hint. All eyes are on you.","pfsoe_duelIntroCaspian:""Caspian has such a punchable face, it couldn't be helped.""
+pfsoe_introWhoMe:""Who, me?""
+pfsoe_introDrink:""Why don't we all have a drink and calm down.""",
+pfsoeDuelIntroCaspian,DialogOptionSelected,"$option == pfsoe_duelIntroCaspian","FireAll pfsoeDuelResponses
+Call $global.pfsoe_ref crowdGasp","""He's irrelevant. You attacked the uniform, and for that,"" Cardona loosens his sword, ""I challenge you to honorable combat.""
+
+Sang grins from behind him, relishing the moment.",,
+pfsoeDuelIntroWhoMe,DialogOptionSelected,"$option == pfsoe_introWhoMe","$option = pfsoe_introDrink 0
+FireBest DialogOptionSelected",,,
+pfsoeDuelIntroDrink,DialogOptionSelected,"$option == pfsoe_introDrink","FireAll pfsoeDuelResponses
+Call $global.pfsoe_ref crowdGasp","""You. $playerName. You attacked the uniform, and for that,"" Cardona loosens his sword, ""I challenge you to honorable combat.""
+
+Sang grins from behind him, relishing this moment.",,
+pfsoeDuelResponseAccept,pfsoeDuelResponses,,,,"pfsoe_duelAccept:""I accept.""",
+pfsoeDuelResponseScared,pfsoeDuelResponses,"!$scaredSang",,,"pfsoe_duelScared:""Too scared to fight me yourself, Caspian?""",
+pfsoeDuelResponseLegal,pfsoeDuelResponses,"!$isThisLegal",,,"pfsoe_duelLegal:""Is this legal?""",
+pfsoeDuelResponseSpace,pfsoeDuelResponses,"!$preferSpace",,,"pfsoe_duelSpace:""I prefer space combat.""",
+pfsoeDuelResponseNo,pfsoeDuelResponses,,,,"pfsoe_duelNo:""No, thank you.""",
+pfsoeDuelAccept,DialogOptionSelected,"$option == pfsoe_duelAccept",,"Cardona nods. ""Prepare yourself.""","pfsoe_duelPrepare:Continue",
+pfsoeDuelScared,DialogOptionSelected,"$option == pfsoe_duelScared","$scaredSang = true 0
+HideSecondPerson
+FireAll pfsoeDuelResponses","You catch a glimpse of Sang's panic before Cardona steps forward, putting himself between you and Sang. ""It is I who have challenged you. Answer me now!""",,
+pfsoeDuelLegal,DialogOptionSelected,"$option == pfsoe_duelLegal","$isThisLegal = true 0
+FireAll pfsoeDuelResponses","""I'm afraid so,"" Neriene says. ""Technically.""",,
+pfsoeDuelSpace,DialogOptionSelected,"$option == pfsoe_duelSpace","$preferSpace = true 0
+FireAll pfsoeDuelResponses","""On Eventide we have the courage to fight face to face,"" Cardona says.
+
+""Now answer my challenge!""",,
+pfsoeDuelNo,DialogOptionSelected,"$option == pfsoe_duelNo",,"""Then you prove that you don't belong here among us,"" Cardona sneers.
+
+""You've the thin frontier blood of thieves and failures. Crawl away now, barbarian, and be thankful the Hegemony came to save your kind when you proved unable to rule yourself.""","pfsoe_duelAccept:""On second thought, I accept.""
+pfsoe_duelNoLeave1:""Your crude tradition proves nothing. Good-bye."" 
+pfsoe_duelWhoBarbarian:""Barbarian? You're the one threatening guests with oversized cutlery.""
+pfsoe_duelNoLeave2:Leave",
+pfsoeDuelWhoBarbarian,DialogOptionSelected,"$option == pfsoe_duelWhoBarbarian","AdjustRepPerson magnus_cardona VENGEFUL -5","This prompts a few snickers and a guffaw from the crowd. Cardona looks furiously to each side, then straight at you.
+
+""Answer my challenge,"" he shouts, ""And do it now!""","pfsoe_duelAccept:""On second thought, I accept.""
+pfsoe_duelNoLeave1:""Your crude tradition proves nothing. Good-bye."" 
+pfsoe_duelNoLeave2:Just leave",
+pfsoeDuelNoLeave1,DialogOptionSelected,"$option == pfsoe_duelNoLeave1","$option = pfsoe_duelNoLeave2 0
+FireBest DialogOptionSelected",,,
+pfsoeDuelNoLeave2,DialogOptionSelected,"$option == pfsoe_duelNoLeave2","EndConversation DO_NOT_FIRE
+HideSecondPerson
+HideThirdPerson
+$option = pfsoe_duelLeaveGo 0
+FireBest DialogOptionSelected","Neriene follows you. ""Good,"" she says to you under her breath.",,
+pfsoeDuelPrepare,DialogOptionSelected,"$option == pfsoe_duelPrepare","HideSecondPerson
+HideThirdPerson","Your acceptance washes across the crowd, waking them as if from a stupor. Their murmuring fills the hall. Cardona, Sang, and the rest gather and begin walking toward a tall set of doors at one end of the ballroom. Others join them, mostly officers, mostly young men.
+
+""Grandmother!"" Neriene calls out; you follow her pleading look to a stately woman overseeing the entire affair. ""Put a stop to this, there's no need for bloodshed on this night.""","pfsoe_duelPrepare2:Continue",
+pfsoeDuelPrepare2,DialogOptionSelected,"$option == pfsoe_duelPrepare2","ShowSecondPerson augusta_rao","You recognize Augusta Rao from the news holos. Her head pitches almost imperceptibly - a denial - before she turns her back and moves away, pulling in her wake a retinue of ministers and aristocrats.","pfsoe_duelPrepare3:Continue",
+pfsoeDuelPrepare3,DialogOptionSelected,"$option == pfsoe_duelPrepare3","EndConversation DO_NOT_FIRE
+ShowImageVisual eventide
+Call $global.pfsoe_ref THEDUEL",,"pfsoe_duelPrepare4:Continue",
+pfsoeDuelPrepare4,DialogOptionSelected,"$option == pfsoe_duelPrepare4","FireAll pfsoeDuelPrepResponse","On a bench before you lies a dueling kit: hardened boots, gloves, and helmet. A neatly folded jumpsuit of material smart enough to allow only what it judges to be non-lethal jabs and cuts comes with a suite of embedded medical sensors to automatically perform first-aid upon injury. ""Deaths are very rare,"" a minor aristocrat assures you as he hands a scabbard to Neriene Rao.
+
+She waves him back toward the gawkers with an annoyed look. There are fewer gathered around you, and fewer uniforms, than those egging on Cardona and Sang.
+
+""This is stupid,"" she says, drawing the sword a handswidth and examining the edge. ""You don't have to go through with it.""",,
+pfsoeDuelPrepResponseBeginDuel,pfsoeDuelPrepResponse,"$player.gotSword",,,"pfsoe_duelPrepReady:""I'm ready to fight.""",
+pfsoeDuelPrepResponseCoward,pfsoeDuelPrepResponse,"!$prepSaidCoward",,,"pfsoe_duelPrepCoward:""I won't have them think me a coward.""",
+pfsoeDuelPrepResponseCoward2,pfsoeDuelPrepResponse,"$prepSaidCoward
+!$prepSaidCoward2",,,"pfsoe_duelPrepCoward2:""What do you mean by people like Cardona?""",
+pfsoeDuelPrepResponseQuaint,pfsoeDuelPrepResponse,"!$prepSaidQuaint",,,"pfsoe_duelPrepQuaint:""Charming traditions you have here.""",
+pfsoeDuelPrepResponseSword,pfsoeDuelPrepResponse,"!$player.gotSword",,,"pfsoe_duelPrepSword:Just take the sword",
+pfsoeDuelPrepResponseStudied,pfsoeDuelPrepResponse,"!$player.gotSword","SetStoryOption pfsoe_duelPrepStudied 1 pfsoe_duelPrepStudied combat ""Called upon sword combat training while dueling on Eventide""",,"pfsoe_duelPrepStudied:""Contrary to my looks, I have studied the blade."" (easier fight)",
+pfsoeDuelPrepTutorialAsk,pfsoeDuelPrepResponse,"$player.gotSword
+!$askDoTutorial","$askDoTutorial = true 0","Neriene pauses a moment, then says ""Before you go through with this, would you like to take a few practice swings to warm up?""",,
+pfsoeDuelPrepTutorialDo,pfsoeDuelPrepResponse,"$player.gotSword
+!$didSwordTutorial",,,"pfsoe_duelTutorialStart:Take a few practice swings (sword tutorial)",
+pfsoeDuelPrepResponseLeave,pfsoeDuelPrepResponse,,,,"pfsoe_duelPrepLeave:""You're right, this is stupid. I'm leaving.""",
+pfsoeDuelTutorialStart,DialogOptionSelected,"$option == pfsoe_duelTutorialStart
+!$player.bladeSkill","Call $global.pfsoe_ref beginTutorial false",,,
+pfsoeDuelTutorialStartSkilled,DialogOptionSelected,"$option == pfsoe_duelTutorialStart
+$player.bladeSkill","Call $global.pfsoe_ref beginTutorial true",,,
+pfsoeDuelTutorialEnd,pfsoeTutorialFinished ,,"FireAll pfsoeDuelPrepResponse","""Well."" Neriene considers her words carefully. ""I think Cardona has been drinking, so that'll help.""",,
+pfsoeDuelPrepCoward,DialogOptionSelected,"$option == pfsoe_duelPrepCoward","$prepSaidCoward = true 0
+FireAll pfsoeDuelPrepResponse","Neriene sighs, ""It doesn't matter what those children think. I just can't believe grandmother is allowing this to go on. Emboldening people like Cardona is going to cause trouble.""",,
+pfsoeDuelPrepCoward2,DialogOptionSelected,"$option == pfsoe_duelPrepCoward2","$prepSaidCoward2 = true 0
+FireAll pfsoeDuelPrepResponse","""It's, um. Complicated. Political."" She doesn't like to talk about it, you think. 
+
+""There are those in the Hegemony that think they - we, I mean; those whose families came from the officers of the Fourteenth Battlegroup - that we're somehow better than everyone else. It's ridiculous.""",,
+pfsoeDuelPrepSword,DialogOptionSelected,"$option == pfsoe_duelPrepSword","$player.gotSword = true 0
+FireAll pfsoeDuelPrepResponse","She hands you the scabbard with the sword, ""This was given to me by my father."" 
+
+""But it doesn't have any sentimental value."" She gives you a quick look, ""I never cared for swordplay.""",,
+pfsoeDuelPrepQuaint,DialogOptionSelected,"$option == pfsoe_duelPrepQuaint","$prepSaidQuaint = true 0
+FireAll pfsoeDuelPrepResponse","""One that has no place in a civilized society,"" she says. ""But I suppose we aren't quite that, are we."" She looks off toward one of the mirrorsets.",,
+pfsoeDuelPrepStudied,DialogOptionSelected,"$option == pfsoe_duelPrepStudied","AddTextSmall ""Revealed sword combat training"" highlight
+$player.bladeSkill = true
+$player.gotSword = true 0
+FireAll pfsoeDuelPrepResponse","Neriene looks doubtful as she hands you the scabbard. 
+
+You draw the blade in a single movement and demonstrate a lunge or two. The crowd gathering around you cheers and call boasts toward the other end of the loggia.
+
+""Those idiots might have made a bigger mistake than I thought,"" she admits with an impressed look.",,
+pfsoeDuelPrepReady,DialogOptionSelected,"$option == pfsoe_duelPrepReady",,"""If you're sure,"" she says.
+
+As you begin to step away, she adds ""And... give him hell!""","pfsoe_duelPrepDone:Continue",
+pfsoeDuelPrepLeave,DialogOptionSelected,"$option == pfsoe_duelPrepLeave","$option = pfsoe_duelLeaveGo 0
+FireBest DialogOptionSelected","""Good,"" she says, and drops the scabbard onto the pile of dueling kit.",,
+pfsoeDuelLeaveGo,DialogOptionSelected,"$option == pfsoe_duelLeaveGo","MarketReduceRandomRep","The crowd jeers. Neriene gives the closest hecklers a killing look; they quickly discover that they were less enthusiastic about this duel than they had thought. Her status as a member of House Rao and host of the ball does not shield you from general disdain, however, and she quickly leads you through a discreet servants' access lift and back to your shuttle's pad.","pfsoe_duelPrepLeave2:Continue",
+pfsoeDuelPrepLeave2,DialogOptionSelected,"$option == pfsoe_duelPrepLeave2","BeginConversation neriene_rao","The staff is efficient; your entourage is summoned without requiring your intervention, though they seem to have been interrupted in the middle of a meal, wiping hands and one guard popping an anti-inebriant.
+
+Shuttle prepped, Neriene sees you off from the launch pad.
+
+""Well,"" she says uncomfortably, ""I apologize for... for everything. We're not all clannish brutes.""","pfsoe_duelPrepLeaveWontHold:""I won't hold their actions against you.""
+pfsoe_duelPrepLeaveBravado:""I've survived worse. It's no hull breach, for instance.""
+pfsoe_duelPrepLeaveDatingSim:""I enjoyed the dance. We should do it again.""
+pfsoe_duelPrepLeaveRude:""Don't. They just showed me what you really are.""",
+pfsoeDuelPrepLeaveWontHold,DialogOptionSelected,"$option == pfsoe_duelPrepLeaveWontHold",,"She nods, accepting your words, her face still grim. ""Until a better time, captain."" She turns away before you can reply, heading toward the manor complex.","pfsoe_duelPrepLeaveEnd:Leave",
+pfsoeDuelPrepLeaveBravado,DialogOptionSelected,"$option == pfsoe_duelPrepLeaveBravado",,"""No, I suppose not,"" she says, the start of a smile on her face. ""Until a better time, captain,"" she says then turns away before you can reply, heading toward the manor complex.","pfsoe_duelPrepLeaveEnd:Leave",
+pfsoeDuelPrepLeaveDatingSim,DialogOptionSelected,"$option == pfsoe_duelPrepLeaveDatingSim","AdjustRepPerson neriene_rao FRIENDLY 1","""I'd like that,"" she says, the start of a smile on her face. She looks like she is about to say more, but instead nods quickly and turns away before you can reply, heading toward the manor complex.","pfsoe_duelPrepLeaveEnd:Leave",
+pfsoeDuelPrepLeaveRude,DialogOptionSelected,"$option == pfsoe_duelPrepLeaveRude","AdjustRepPerson neriene_rao SUSPICIOUS -5","She looks hurt, opens her mouth to speak, then closes it and quickly turns away, heading toward the manor complex.","pfsoe_duelPrepLeaveEnd:Leave",
+pfsoeDuelPrepLeaveEnd,DialogOptionSelected,"$option == pfsoe_duelPrepLeaveEnd","Call $global.pfsoe_ref cleanUpMusicPlayer
+EndConversation DO_NOT_FIRE
+$global.soe_completed = true
+Call $global.soe_ref updateStage
+ShowDefaultVisual
+FireBest MarketPostOpen","Your shuttle rejoins your $shipOrFleet above $entityName.",,
+,,,,,,
+pfsoeDuelPrepDone,DialogOptionSelected,"$option == pfsoe_duelPrepDone","EndConversation DO_NOT_FIRE
+ShowImageVisual eventide","Dressed in dueling gear and wielding Neriene's sword, you are led to one end of a columned loggia that seems to hang over the valley below. 
+
+Magnus Cardona steps forward, and the crowds withdraw.","pfsoe_duelStart:Fight",
+pfsoeDuelStart,DialogOptionSelected,"$option == pfsoe_duelStart","EndConversation DO_NOT_FIRE
+Call $global.pfsoe_ref beginDuel false",,,
+pfsoeDuelStartSkilled,DialogOptionSelected,"$player.bladeSkill
+$option == pfsoe_duelStart","EndConversation DO_NOT_FIRE
+Call $global.pfsoe_ref beginDuel true",,,
+"#END pfsoe step 2: Arrive at Eventide",,,,,,
+,,,,,,
+# pfsoe Won Duel,,,,,,
+pfsoeFightWin,pfsoeDuelFinished,"$pfsoe_playerWonDuel","Call $global.pfsoe_ref postDuel","The watching crowd emits a sound of collective sympathetic pain as Cardona falls to the floor with a crack. A tense silence follows.
+
+Sang and his minions look horrified. The onlookers behind them watch, frozen and unsure.","pfsoe_fightWin2:Continue",
+pfsoeFightWin2,DialogOptionSelected,"$option == pfsoe_fightWin2","AdjustRep hegemony NEUTRAL 3","Something large and unseen turns on an invisible fulcrum toward a tipping point, a threshhold of critical mass igniting a state change.
+
+Someone begins to cheer, then others, with a rising wave of applause and shouts. It is agreed, then, that today we may cheer for the outsider.","pfsoe_fightWin3:Continue",
+pfsoeFightWin3,DialogOptionSelected,"$option == pfsoe_fightWin3",,"You find yourself lifted onto the shoulders of excitable revelers who were not your friend only minutes ago. You are carried bodily back into the grand hall, where pressurized potables are uncapped.
+
+Placed at the head table like a king, you are presented to those gathered as some kind of cult-object, the avatar of victory, honor, or some other notions that will likely make a lot less sense tomorrow when everyone sobers up.","pfsoe_fightWin4:Continue",
+pfsoeFightWin4,DialogOptionSelected,"$option == pfsoe_fightWin4",,"The thought crosses your mind that Neriene's sword is no longer in your hand. You hope someone ensured that it was safely stowed. You catch sight of Neriene's face; she is trying to push through the crowd. She looks at once joyful and concerned.
+
+Augusta Rao looks on from afar, her expression aloof.","pfsoe_fightWin5:Continue",
+pfsoeFightWin5,DialogOptionSelected,"$option == pfsoe_fightWin5","BeginConversation neriene_rao","Later - how much later you don't care to consider just yet - you stand unsteadily before your shuttle. The manor staff are efficient; your entourage has been summoned. Some look like they've been woken from sleep, and you note one guard stealthily popping an anti-inebriant. They keep their tone professional, but you can tell that they are glowing with pride. Word of your victory obviously spread quickly through the waiting flight crews.
+
+Neriene appears to see you off from the launch pad. She is well composed despite the excesses of the ball.
+
+""You've made some friends tonight,"" Neriene says with a hint of a smile, which fades. ""And some enemies.""","pfsoe_fightWinMaybe:""Fun party. See you around, maybe.""
+soe_fightWinBravado:""And now my enemies know what's waiting for them.""
+soe_fightWinDatingSim:""I hope to count you among those friends.""
+soe_fightWinNeverAgain:""I'm never coming to one of these balls ever again.""
+soe_fightWinRude:""I can't believe you convinced me to take part in that debauched bloodsport.""
+",
+pfsoeFightWinMaybe,DialogOptionSelected,"$option == pfsoe_fightWinMaybe","AdjustRepPerson neriene_rao FRIENDLY 1","She nods, the hint of a smile returning. ""Maybe."" She turns away before you can reply, and walks back toward the manor complex.","pfsoe_fightWinPrevail:Leave",
+pfsoeFightWinBravado,DialogOptionSelected,"$option == pfsoe_fightWinBravado",,"Her brow furrows. ""And your friends, I suppose,"" she says, and turns away.
+
+She starts back toward the manor complex before you can reply.","pfsoe_fightWinPrevail:Leave",
+pfsoeFightWinDatingSim,DialogOptionSelected,"$option == pfsoe_fightWinDatingSim","AdjustRepPerson neriene_rao FRIENDLY 2","""I'd like that,"" she says, the smile returning.
+
+She looks like she might say more but instead nods and turns away, heading back toward the manor complex before you can reply.","pfsoe_fightWinPrevail:Leave",
+pfsoeFightWinNeverAgain,DialogOptionSelected,"$option == pfsoe_fightWinNeverAgain",,"She nods toward the distant stormclouds, thoughtful, ""I can't say a blame you. Perhaps we shall meet again in a more... civilized context.""
+
+With that, she turns away and heads toward the manor complex.","pfsoe_fightWinPrevail:Leave",
+pfsoeFightWinRude,DialogOptionSelected,"$option == pfsoe_fightWinRude","AdjustRepPerson neriene_rao SUSPICIOUS -5","She looks shocked, ""You actually think I-"" she interrupts herself, holding her palm toward you, her expression hardening.
+
+Neriene opens her mouth to speak, then closes it and quickly turns away, heading back toward the manor complex.","pfsoe_fightWinPrevail:Leave",
+pfsoeFightWinPrevail,DialogOptionSelected,"$option == pfsoe_fightWinPrevail","Call $global.pfsoe_ref cleanUpMusicPlayer
+EndConversation DO_NOT_FIRE
+AddStoryPoints 1
+$global.pfsoe_completed = true
+Call $global.pfsoe_ref updateStage
+ShowDefaultVisual
+FireBest MarketPostOpen","Your shuttle rejoins your $shipOrFleet above $entityName.",,
+"#END pfsoe Won Duel",,,,,,
+,,,,,,
+# pfsoe Lost Duel,,,,,,
+pfsoeFightLose,pfsoeDuelFinished,"$pfsoe_playerLostDuel","Call $global.pfsoe_ref postDuel","You slowly awaken. You feel distinctly unwell; there is no pain, but instead the wrongness of separated flesh. 
+
+A portable automedic beeps beside you, cold tubes running into your body. An vaguely Neriene Rao-shaped figure asks you something.","pfsoe_fightLose1:Continue",
+pfsoeFightLose1,DialogOptionSelected,"$option == pfsoe_fightLose1",,"You're leaning against a bench, you think, with someone's uniform jacket behind your head. Tall windows glow in the twilight, the blurred forms of revellers moving within.
+
+The mirrors have been allowed to set, leaving the sky glowing darkly in deepest blue.","pfsoe_fightLose2:Continue",
+pfsoeFightLose2,DialogOptionSelected,"$option == pfsoe_fightLose2","BeginConversation neriene_rao","""Come on, let's get you back to your shuttle.""
+
+Neriene pulls you to your feet. Your head spins for a moment, then the automedic whirrs. A sense of fragile wellness fills you.
+
+She gingerly leads you to a discreet servants' access lift and back to your shuttle's pad.","pfsoe_fightLose3:Continue",
+pfsoeFightLose3,DialogOptionSelected,"$option == pfsoe_fightLose3",,"The manor staff are efficient; your entourage has been summoned. They keep their tone professional, but you can tell that their mood is cautious. Word of your loss obviously spread quickly through the waiting flight crews.
+
+Neriene sees you off from the launch pad.
+
+""Well,"" she says uncomfortably, ""I apologize for... for everything. We're not all clannish brutes.""","pfsoe_fightLoseWontHold:""I won't hold their actions against you.""
+pfsoe_fightLoseParty:""Fun party. Glad I survived it.""
+pfsoe_fightLoseBravado:""Now they know I won't back down. I won that much.""
+pfsoe_fightLoseDatingSim:""I enjoyed the dance. We should do it again.""
+pfsoe_fightLoseRude:""Don't. They just showed me what you really are.""",
+pfsoeFightLoseWontHold,DialogOptionSelected,"$option == pfsoe_fightLoseWontHold",,"She nods grimly, accepting your words.
+
+""Until a better time, captain."" She turns away before you can reply, heading toward the manor complex.","pfsoe_fightLoseLeave:Leave",
+pfsoeFightLoseParty,DialogOptionSelected,"$option == pfsoe_fightLoseParty","AdjustRepPerson neriene_rao FRIENDLY 1","""Me too,"" she says with the start of a smile.
+
+""Until next time, captain,"" she says, turning back toward the manor complex before you can reply.","pfsoe_fightLoseLeave:Leave",
+pfsoeFightLoseBravado,DialogOptionSelected,"$option == pfsoe_fightLoseBravado",,"Her brow furrows. ""At the academy we were taught to avoid battle on terms set by the enemy."" 
+
+She looks like she might say more, but decides against it. With a shake of her head she turns away before you can respond, heading back toward the manor complex.","pfsoe_fightLoseLeave:Leave","# translation: ""you idiot"""
+pfsoeFightLoseDatingSim,DialogOptionSelected,"$option == pfsoe_fightLoseDatingSim","AdjustRepPerson neriene_rao FRIENDLY 2","""I'd like that,"" she says, her smile finally returning.
+
+She looks like she might say more but instead nods quickly and turns away before you can reply, heading back toward the manor complex.","pfsoe_fightLoseLeave:Leave",
+pfsoeFightLoseRude,DialogOptionSelected,"$option == pfsoe_fightLoseRude","AdjustRepPerson neriene_rao SUSPICIOUS -3","She looks hurt, opens her mouth to speak, then closes it and quickly turns away, heading toward the manor complex.","pfsoe_fightLoseLeave:Leave",
+pfsoeFightLoseLeave,DialogOptionSelected,"$option == pfsoe_fightLoseLeave","Call $global.pfsoe_ref cleanUpMusicPlayer
+EndConversation DO_NOT_FIRE
+AddStoryPoints 1
+$global.pfsoe_completed = true
+Call $global.pfsoe_ref updateStage
+ShowDefaultVisual
+FireBest MarketPostOpen","Your shuttle rejoins your $shipOrFleet above $entityName.",,
+"#END pfsoe Lost Duel",,,,,,
+,,,,,,
+# NPC reactions - different greetings based on things the player has done. Usually one-time or with a delay before they can happen again.,,,,,,
+"#END NPC reactions - different greetings based on things the player has done. Usually one-time or with a delay before they can happen again.",,,,,,
+"#END No Hegemony Sword of Eventide",,,,,,
+"#END Missions",,,,,,
